@@ -46,12 +46,12 @@
 </template>
 
 <script>
-import {callApi, LocalStore} from '@/app/utils'
-import {FingerprintSpinner} from 'epic-spinners'
+import { callApi, LocalStore } from '@/app/utils'
+import { FingerprintSpinner } from 'epic-spinners'
 export default {
   name: 'login',
   components: {
-    FingerprintSpinner
+    FingerprintSpinner,
   },
   data () {
     return {
@@ -62,7 +62,7 @@ export default {
       keepLoggedIn: false,
       emailErrors: [],
       passwordErrors: [],
-      isSubmit: false
+      isSubmit: false,
     }
   },
   computed: {
@@ -70,35 +70,26 @@ export default {
       return !this.emailErrors.length && !this.passwordErrors.length
     },
   },
-  created() {
-    callApi(`/profile`, {}, "get")
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err)
-        });
-  },
   methods: {
     onsubmit () {
       this.emailErrors = this.email ? [] : ['Email is required']
       this.passwordErrors = this.password ? [] : ['Password is required']
       if (!this.formReady) {
-        return
-      }else {
+
+      } else {
         this.isSubmit = true
-        callApi(`/login`, {email: this.email, password: this.password }, "post")
-        .then(res => {
-          this.isSubmit = false
-          LocalStore.saveToken(res.data.token)
-          LocalStore.saveUser(res.data.user)
-          this.successMessage = res.message
-          this.$router.push({ name: 'profile' })
-        })
-        .catch(err => {
-          this.isSubmit = false
-          this.errorMessageFromServer = err.message
-        });
+        callApi(`/login`, { email: this.email, password: this.password }, 'post')
+          .then(res => {
+            this.isSubmit = false
+            LocalStore.saveToken(res.data.token)
+            LocalStore.saveUser(res.data.user)
+            this.successMessage = res.message
+            this.$router.push({ name: 'profile' })
+          })
+          .catch(err => {
+            this.isSubmit = false
+            this.errorMessageFromServer = err.message
+          })
       }
     },
   },

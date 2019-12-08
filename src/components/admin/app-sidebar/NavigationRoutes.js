@@ -5,11 +5,27 @@ export const navigationRoutes = {
   },
   routes: [
     {
-      name: 'dashboard',
-      displayName: 'menu.dashboard',
+      name: 'profile',
+      displayName: 'Bio',
       meta: {
-        linkTo: 'dashboard',
+        linkTo: 'profile',
+        iconClass: 'vuestic-iconset-user',
+      },
+    },
+    {
+      name: 'Education',
+      displayName: 'Education',
+      meta: {
+        linkTo: 'education',
         iconClass: 'vuestic-iconset-dashboard',
+      },
+    },
+    {
+      name: 'Experience',
+      displayName: 'Experience',
+      meta: {
+        linkTo: 'experience',
+        iconClass: 'vuestic-iconset-forms',
       },
     },
     {

@@ -92,6 +92,16 @@ export default new Router({
           default: true,
         },
         {
+          name: 'education',
+          path: 'education',
+          component: () => import('../components/profile/Education.vue'),
+        },
+        {
+          name: 'experience',
+          path: 'experience',
+          component: () => import('../components/profile/Experience.vue'),
+        },
+        {
           name: 'joblist',
           path: 'joblist',
           component: () => import('../components/jobs/joblist.vue'),
